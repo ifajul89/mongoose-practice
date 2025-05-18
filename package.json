@@ -18,6 +18,7 @@
     "mongoose": "^8.15.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.18",
     "typescript": "^5.8.3"
