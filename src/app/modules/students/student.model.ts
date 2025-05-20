@@ -2,7 +2,19 @@ import { Schema, model } from "mongoose";
 import { IName, IStudent } from "./student.interface";
 
 const nameSchema = new Schema<IName>({
-  firstName: { type: String, required: true },
+  firstName: {
+    type: String,
+    required: true,
+    validate: { // custom validator cheking if the name is capitalized
+      validator: function (value: string) {
+        const firstNameFormatValidation =
+          value.charAt(0).toUpperCase() + value.slice(1);
+
+        return value === firstNameFormatValidation;
+      },
+      message: "The name fomation isn't correct",
+    },
+  },
   middleName: { type: String },
   lastName: { type: String, required: true },
 });
@@ -14,6 +26,7 @@ const studentSchema = new Schema<IStudent>({
     required: [true, "Can't skip the name"], // custom validation
     minlength: [2, "Name can't be less than 2 Characters"],
     maxlength: [2, "Name can't be less more 30 Characters"],
+    trim: true, // removes spacef from front and back
   },
   age: {
     type: Number,
