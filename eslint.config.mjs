@@ -17,8 +17,10 @@ export default [
       'no-console': 'warn',
       'no-undef': 'error',
     },
-    globals: {
-      process: 'readonly',
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+      },
     },
   },
 ];
