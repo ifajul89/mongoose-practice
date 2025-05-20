@@ -1,3 +1,5 @@
+// this file interacts with database
+
 import { IStudent } from './student.interface';
 import { Student } from './student.model';
 
@@ -7,6 +9,13 @@ const createStudentInDB = async (student: IStudent) => {
   return result;
 };
 
+const getStudentsFromDB = async () => {
+  const result = await Student.find();
+
+  return result;
+};
+
 export const StudentServices = {
   createStudentInDB,
+  getStudentsFromDB,
 };
