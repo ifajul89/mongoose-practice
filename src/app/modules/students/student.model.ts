@@ -17,4 +17,5 @@ const studentSchema = new Schema<IStudent>({
   gender: ['male', 'female'], // this is enum type
 });
 
+// 'Student' will be Students as collection name in mongodb
 export const Student = model<IStudent>('Student', studentSchema); // name would be capitalized
