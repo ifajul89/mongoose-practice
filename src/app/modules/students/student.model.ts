@@ -8,8 +8,11 @@ const nameSchema = new Schema<IName>({
 });
 
 const studentSchema = new Schema<IStudent>({
-  id: String, // these type would be capitalized
-  name: nameSchema,
+  id: { type: String, required: true, unique: true }, // these type would be capitalized
+  name: {
+    type: nameSchema,
+    required: [true, "Can't skip the name"], // custom validation
+  },
   age: {
     type: Number,
     required: true,
@@ -17,7 +20,10 @@ const studentSchema = new Schema<IStudent>({
   gender: {
     type: String,
     required: true,
-    enum: ['male', 'female'], // this is enum type
+    enum: {
+      values: ['male', 'female'],
+      message: '{VALUE} is not a valid gender',
+    }, // this is enum type
   },
 });
 
