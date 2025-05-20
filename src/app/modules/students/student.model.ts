@@ -14,7 +14,11 @@ const studentSchema = new Schema<IStudent>({
     type: Number,
     required: true,
   },
-  gender: ['male', 'female'], // this is enum type
+  gender: {
+    type: String,
+    required: true,
+    enum: ['male', 'female'], // this is enum type
+  },
 });
 
 // 'Student' will be Students as collection name in mongodb
