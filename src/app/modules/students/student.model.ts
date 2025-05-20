@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { IName, IStudent } from './student.interface';
+import { Schema, model } from "mongoose";
+import { IName, IStudent } from "./student.interface";
 
 const nameSchema = new Schema<IName>({
   firstName: { type: String, required: true },
@@ -12,20 +12,24 @@ const studentSchema = new Schema<IStudent>({
   name: {
     type: nameSchema,
     required: [true, "Can't skip the name"], // custom validation
+    minlength: [2, "Name can't be less than 2 Characters"],
+    maxlength: [2, "Name can't be less more 30 Characters"],
   },
   age: {
     type: Number,
     required: true,
+    min: [3, "Age can't be less than 3"],
+    max: [80, "Age can't be more than 80"],
   },
   gender: {
     type: String,
     required: true,
     enum: {
-      values: ['male', 'female'],
-      message: '{VALUE} is not a valid gender',
+      values: ["male", "female"],
+      message: "{VALUE} is not a valid gender",
     }, // this is enum type
   },
 });
 
 // 'Student' will be Students as collection name in mongodb
-export const Student = model<IStudent>('Student', studentSchema); // name would be capitalized
+export const Student = model<IStudent>("Student", studentSchema); // name would be capitalized

@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { StudentServices } from './student.service';
+import { Request, Response } from "express";
+import { StudentServices } from "./student.service";
 
 const createStudent = async (req: Request, res: Response) => {
   try {
@@ -9,11 +9,15 @@ const createStudent = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: 'Student created successfully',
+      message: "Student created successfully",
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      Error: err,
+    });
   }
 };
 
@@ -23,7 +27,7 @@ const getStudents = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: 'Students are retrived successfully',
+      message: "Students are retrived successfully",
       data: result,
     });
   } catch (err) {
@@ -39,7 +43,7 @@ const getSingleStudent = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: 'Student data retrived successfully',
+      message: "Student data retrived successfully",
       data: result,
     });
   } catch (err) {

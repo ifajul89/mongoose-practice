@@ -1,7 +1,7 @@
 // this file interacts with database
 
-import { IStudent } from './student.interface';
-import { Student } from './student.model';
+import { IStudent } from "./student.interface";
+import { Student } from "./student.model";
 
 const createStudentInDB = async (student: IStudent) => {
   const result = await Student.create(student); // using mongoose to create student in database

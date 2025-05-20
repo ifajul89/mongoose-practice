@@ -8,5 +8,5 @@ export interface IStudent {
   id: string;
   name: IName;
   age: number;
-  gender: 'male' | 'female';
+  gender: "male" | "female";
 }
