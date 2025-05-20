@@ -17,4 +17,4 @@ const studentSchema = new Schema<IStudent>({
   gender: ['male', 'female'], // this is enum type
 });
 
-const Student = model<IStudent>('Student', studentSchema); // name would be capitalized
+export const Student = model<IStudent>('Student', studentSchema); // name would be capitalized
