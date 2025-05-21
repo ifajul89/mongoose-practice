@@ -1,11 +1,13 @@
 import { Schema, model } from "mongoose";
 import { IName, IStudent } from "./student.interface";
+import validator from "validator";
 
 const nameSchema = new Schema<IName>({
   firstName: {
     type: String,
     required: true,
-    validate: { // custom validator cheking if the name is capitalized
+    validate: {
+      // custom validator cheking if the name is capitalized
       validator: function (value: string) {
         const firstNameFormatValidation =
           value.charAt(0).toUpperCase() + value.slice(1);
@@ -16,7 +18,14 @@ const nameSchema = new Schema<IName>({
     },
   },
   middleName: { type: String },
-  lastName: { type: String, required: true },
+  lastName: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value: string) => validator.isAlpha(value),
+      message: "{VALUE} isn't in right format",
+    },
+  },
 });
 
 const studentSchema = new Schema<IStudent>({
@@ -27,6 +36,15 @@ const studentSchema = new Schema<IStudent>({
     minlength: [2, "Name can't be less than 2 Characters"],
     maxlength: [2, "Name can't be less more 30 Characters"],
     trim: true, // removes spacef from front and back
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: (value: string) => validator.isEmail(value),
+      message: "{VALUE} isn't a valid E-Mail",
+    },
   },
   age: {
     type: Number,

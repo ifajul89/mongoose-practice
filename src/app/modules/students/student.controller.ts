@@ -1,9 +1,15 @@
 import { Request, Response } from "express";
 import { StudentServices } from "./student.service";
+// import Joi from "Joi";
 
 const createStudent = async (req: Request, res: Response) => {
   try {
     const { student: studentData } = req.body;
+
+    // crating joi validation schema
+    // const studentValidationSchemaByJoi = Joi.object({
+
+    // })
 
     const result = await StudentServices.createStudentInDB(studentData);
 

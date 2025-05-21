@@ -7,6 +7,7 @@ export interface IName {
 export interface IStudent {
   id: string;
   name: IName;
+  email: string;
   age: number;
   gender: "male" | "female";
 }
