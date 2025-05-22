@@ -6,7 +6,7 @@ const createStudent = async (req: Request, res: Response) => {
   try {
     const { student: studentData } = req.body;
 
-    const { value, error } = studentValidationSchemaByJoi.validate(studentData);
+    const { error } = studentValidationSchemaByJoi.validate(studentData);
 
     if (error) {
       res.status(500).json({
